@@ -20,19 +20,24 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/employees")
-    public Collection<Employee> getAllEmployees() {
-        return this.employeeService.getAllEmployees();
-    }
-
     @PostMapping("/employee")
     public Employee createEmployee(@RequestBody EmployeeRequest employeeRequest) {
         return this.employeeService.addEmployee(employeeRequest);
     }
 
-    @GetMapping("/employees/salary/sum")
-    public double getSalarySum() {
-        return this.employeeService.getSalarySum();
+    @GetMapping("/employees")
+    public Collection<Employee> getAllEmployees() {
+        return this.employeeService.getAllEmployees();
+    }
+
+    @GetMapping("/employees/high-salary")
+    public Collection<Employee> getWhoHasSalaryAboveAverage() {
+        return this.employeeService.getWhoHasSalaryAboveAverage();
+    }
+
+    @GetMapping("/employee/salary/max")
+    public Optional<Employee> getMaxSalaryEmployee() {
+        return this.employeeService.getMaxSalaryEmployee();
     }
 
     @GetMapping("/employee/salary/min")
@@ -40,8 +45,8 @@ public class EmployeeController {
         return this.employeeService.getMinSalaryEmployee();
     }
 
-    @GetMapping("/employee/salary/max")
-    public Optional<Employee> getMaxSalaryEmployee() {
-        return this.employeeService.getMaxSalaryEmployee();
+    @GetMapping("/employees/salary/sum")
+    public double getSalarySum() {
+        return this.employeeService.getSalarySum();
     }
 }
