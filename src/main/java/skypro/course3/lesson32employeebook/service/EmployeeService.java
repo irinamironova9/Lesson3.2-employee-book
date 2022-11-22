@@ -1,6 +1,8 @@
 package skypro.course3.lesson32employeebook.service;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import skypro.course3.lesson32employeebook.exceptions.InvalidEmployeeRequestException;
 import skypro.course3.lesson32employeebook.model.Employee;
 import skypro.course3.lesson32employeebook.record.EmployeeRequest;
 
@@ -14,16 +16,19 @@ public class EmployeeService {
 
     public Employee addEmployee(EmployeeRequest er) {
 
-        if (er.getFullName() == null ||
-                er.getFullName().isBlank() ||
+        if (!StringUtils.isAlpha(er.getName()) ||
+                !StringUtils.isAlpha(er.getSurname()) ||
                 er.getDepartment() < 1 ||
                 er.getDepartment() > 5 ||
                 er.getSalary() < 0) {
-            throw new IllegalArgumentException("Введены некорректные данные!");
+            throw new InvalidEmployeeRequestException();
         }
 
-        Employee employee = new Employee(er.getFullName(),
-                er.getDepartment(), er.getSalary());
+        Employee employee = new Employee(
+                StringUtils.capitalize(er.getName()),
+                StringUtils.capitalize(er.getSurname()),
+                er.getDepartment(),
+                er.getSalary());
 
         if (this.employeeBook.containsValue(employee)) {
             throw new RuntimeException("Данный сотрудник уже добавлен.");

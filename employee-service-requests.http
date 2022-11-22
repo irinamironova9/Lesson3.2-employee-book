@@ -6,7 +6,8 @@ POST http://localhost:8080/employee
 Content-Type: application/json
 
 {
-  "fullName": "John",
+  "name": "john",
+  "surname": "watson",
   "department": 1,
   "salary": 1000
 }
@@ -16,7 +17,19 @@ POST http://localhost:8080/employee
 Content-Type: application/json
 
 {
-  "fullName": "Jane",
+  "name": "Jane",
+  "surname": "Austen",
+  "department": 4,
+  "salary": 2000
+}
+
+###Добавление сотрудника 3
+POST http://localhost:8080/employee
+Content-Type: application/json
+
+{
+  "name": null,
+  "surname": "",
   "department": 4,
   "salary": 2000
 }

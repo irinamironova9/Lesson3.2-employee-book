@@ -2,12 +2,17 @@ package skypro.course3.lesson32employeebook.record;
 
 public class EmployeeRequest {
 
-    private String fullName;
+    private String name;
+    private String surname;
     private int department;
     private double salary;
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
     }
 
     public int getDepartment() {
@@ -18,8 +23,12 @@ public class EmployeeRequest {
         return salary;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public void setDepartment(int department) {
