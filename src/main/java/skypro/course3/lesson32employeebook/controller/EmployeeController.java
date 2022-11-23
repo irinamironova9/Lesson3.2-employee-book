@@ -1,11 +1,9 @@
 package skypro.course3.lesson32employeebook.controller;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import skypro.course3.lesson32employeebook.exceptions.InvalidEmployeeRequestException;
 import skypro.course3.lesson32employeebook.model.Employee;
 import skypro.course3.lesson32employeebook.record.EmployeeRequest;
 import skypro.course3.lesson32employeebook.service.EmployeeService;
@@ -23,13 +21,8 @@ public class EmployeeController {
     }
 
     @PostMapping("/employee")
-    public ResponseEntity<Employee> createEmployee(@RequestBody EmployeeRequest employeeRequest) {
-        try {
-            return ResponseEntity.ok(this.employeeService.addEmployee(employeeRequest));
-        } catch (InvalidEmployeeRequestException e) {
-            System.out.println(e);
-            return ResponseEntity.badRequest().build();
-        }
+    public Employee createEmployee(@RequestBody EmployeeRequest employeeRequest) {
+            return this.employeeService.addEmployee(employeeRequest);
     }
 
     @GetMapping("/employees")
