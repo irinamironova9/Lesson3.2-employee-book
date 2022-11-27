@@ -14,8 +14,8 @@ public class EmployeeService {
 
     private final Map<Integer, Employee> employeeBook = new HashMap<>();
 
-    public Map<Integer, Employee> getEmployeeBook() {
-        return employeeBook;
+    public Collection<Employee> getEmployees() {
+        return employeeBook.values();
     }
 
     public Employee addEmployee(EmployeeRequest er) {

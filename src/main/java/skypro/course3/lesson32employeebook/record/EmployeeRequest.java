@@ -7,6 +7,13 @@ public class EmployeeRequest {
     private int department;
     private double salary;
 
+    public EmployeeRequest(String name, String surname, int department, double salary) {
+        this.name = name;
+        this.surname = surname;
+        this.department = department;
+        this.salary = salary;
+    }
+
     public String getName() {
         return name;
     }

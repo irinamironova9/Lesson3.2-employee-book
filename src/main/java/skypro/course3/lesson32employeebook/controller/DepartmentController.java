@@ -19,29 +19,28 @@ public class DepartmentController {
         this.departmentService = departmentService;
     }
 
-    @GetMapping("/employees")
+    @GetMapping("/all-employees")
     public Map<Integer, List<Employee>> getAllEmployeesSortedByDepartment() {
         return departmentService.getAllEmployeesSortedByDepartment();
     }
 
-    @GetMapping("/dep/employees")
-    public List<Employee> getEmployeesOfGivenDepartment(@RequestParam("dep") String department) {
-        int dep = Integer.parseInt(department);
-        return departmentService.getEmployeesOfGivenDepartment(dep);
+    @GetMapping("/employees")
+    public List<Employee> getEmployeesOfGivenDepartment(@RequestParam("dep") int department) {
+        return departmentService.getEmployeesOfGivenDepartment(department);
     }
 
-    @GetMapping("/{}/salary/max")
-    public double getMaxSalaryInDepartment(@RequestParam int department) {
+    @GetMapping("/salary/max")
+    public double getMaxSalaryInDepartment(@RequestParam("dep") int department) {
         return departmentService.getMaxSalaryInDepartment(department);
     }
 
-    @GetMapping("/{}/salary/min")
-    public double getMinSalaryInDepartment(@RequestParam int department) {
+    @GetMapping("/salary/min")
+    public double getMinSalaryInDepartment(@RequestParam("dep") int department) {
         return departmentService.getMinSalaryInDepartment(department);
     }
 
-    @GetMapping("/{}/salary/sum")
-    public double getSumOfSalariesInDepartment(@RequestParam int department) {
+    @GetMapping("/salary/sum")
+    public double getSumOfSalariesInDepartment(@RequestParam("dep") int department) {
         return departmentService.getSumOfSalariesInDepartment(department);
     }
 }
