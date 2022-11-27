@@ -14,6 +14,10 @@ public class EmployeeService {
 
     private final Map<Integer, Employee> employeeBook = new HashMap<>();
 
+    public Map<Integer, Employee> getEmployeeBook() {
+        return employeeBook;
+    }
+
     public Employee addEmployee(EmployeeRequest er) {
 
         if (!StringUtils.isAlpha(er.getName()) ||

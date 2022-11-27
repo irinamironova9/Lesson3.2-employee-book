@@ -1,40 +1,7 @@
-###Получение списка сотрудников
+### Получение списка всех сотрудников
 GET http://localhost:8080/employees
 
-###Добавление сотрудника 1
-POST http://localhost:8080/employee
-Content-Type: application/json
-
-{
-  "name": "john",
-  "surname": "watson",
-  "department": 1,
-  "salary": 1000
-}
-
-###Добавление сотрудника 2
-POST http://localhost:8080/employee
-Content-Type: application/json
-
-{
-  "name": "Jane",
-  "surname": "Austen",
-  "department": 4,
-  "salary": 2000
-}
-
-###Добавление сотрудника 3
-POST http://localhost:8080/employee
-Content-Type: application/json
-
-{
-  "name": null,
-  "surname": "",
-  "department": 4,
-  "salary": 2000
-}
-
-### Получение суммы зарплат сотрудников
+### Получение суммы зарплат всех сотрудников
 GET http://localhost:8080/employees/salary/sum
 
 ### Получение сотрудника с минимальной зарплатой
@@ -43,5 +10,23 @@ GET http://localhost:8080/employee/salary/min
 ### Получение сотрудника с максимальной зарплатой
 GET http://localhost:8080/employee/salary/max
 
-### Получение всех сотрудников, зарплата которых больше средней зарплаты
+### Получение сотрудников с з/п больше средней
 GET http://localhost:8080/employees/high-salary
+
+
+// По департаментам:
+
+### Возвращает всех сотрудников, сгруппированых по отделам
+GET http://localhost:8080/department/employees
+
+### Возвращает список сотрудников заданного отдела
+GET http://localhost:8080/department/dep=2/employees
+
+### Возвращает сумму зарплат по отделу
+GET http://localhost:8080/department/dep=2/salary/sum
+
+### Возвращает максимальную зарплату по отделу
+GET http://localhost:8080/department/{}/salary/max
+
+### Возвращает минимальную зарплату по отделу
+GET http://localhost:8080/department/{}/salary/min
