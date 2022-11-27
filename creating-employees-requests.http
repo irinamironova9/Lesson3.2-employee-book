@@ -1,0 +1,43 @@
+###Добавление сотрудника 1
+POST http://localhost:8080/employee
+Content-Type: application/json
+
+{
+  "name": "john",
+  "surname": "watson",
+  "department": 1,
+  "salary": 1000
+}
+
+###Добавление сотрудника 2
+POST http://localhost:8080/employee
+Content-Type: application/json
+
+{
+  "name": "Jane",
+  "surname": "Austen",
+  "department": 1,
+  "salary": 2000
+}
+
+###Добавление сотрудника 3
+POST http://localhost:8080/employee
+Content-Type: application/json
+
+{
+  "name": "Joan",
+  "surname": "Arc",
+  "department": 2,
+  "salary": 3000
+}
+
+###Добавление сотрудника 4
+POST http://localhost:8080/employee
+Content-Type: application/json
+
+{
+  "name": "Jack",
+  "surname": "Sparrow",
+  "department": 2,
+  "salary": 2500
+}
