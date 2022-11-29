@@ -20,13 +20,13 @@ GET http://localhost:8080/employees/high-salary
 GET http://localhost:8080/department/all-employees
 
 ### Возвращает список сотрудников заданного отдела
-GET http://localhost:8080/department/employees?dep=2
+GET http://localhost:8080/department/2/employees
 
 ### Возвращает сумму зарплат по отделу
-GET http://localhost:8080/department/salary/sum?dep=2
+GET http://localhost:8080/department/1/salary/sum
 
 ### Возвращает максимальную зарплату по отделу
-GET http://localhost:8080/department/salary/max?dep=2
+GET http://localhost:8080/department/2/salary/max
 
 ### Возвращает минимальную зарплату по отделу
-GET http://localhost:8080/department/salary/min?dep=2
+GET http://localhost:8080/department/1/salary/min

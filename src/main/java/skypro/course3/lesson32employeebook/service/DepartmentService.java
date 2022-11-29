@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import skypro.course3.lesson32employeebook.model.Employee;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class DepartmentService {
@@ -15,40 +16,31 @@ public class DepartmentService {
     }
 
     public Map<Integer, List<Employee>> getAllEmployeesSortedByDepartment() {
-        Map<Integer, List<Employee>> sorted = new HashMap<>();
-        employeeService.getEmployees()
-                .forEach(e -> sorted.put(e.getDepartment(), null));
-        for (int i : sorted.keySet()) {
-            int finalI = i;
-            List<Employee> list = employeeService.getEmployees().stream()
-                    .filter(e -> e.getDepartment() == finalI).toList();
-            sorted.put(finalI, list);
-        }
-        return sorted;
+        return employeeService.getAllEmployees().stream()
+                    .collect(Collectors.groupingBy(Employee::getDepartment));
     }
 
     public List<Employee> getEmployeesOfGivenDepartment(int department) {
-        return employeeService.getEmployees().stream()
+        return employeeService.getAllEmployees().stream()
                 .filter(e -> e.getDepartment() == department).toList();
     }
 
     public double getMaxSalaryInDepartment(int department) {
-        return employeeService.getEmployees().stream()
+        return employeeService.getAllEmployees().stream()
                 .filter(e -> e.getDepartment() == department)
                 .mapToDouble(Employee::getSalary)
                 .max().orElse(0);
-        // .orElseThrow(DepartmentNotFoundException::new)
     }
 
     public double getMinSalaryInDepartment(int department) {
-        return employeeService.getEmployees().stream()
+        return employeeService.getAllEmployees().stream()
                 .filter(e -> e.getDepartment() == department)
                 .mapToDouble(Employee::getSalary)
                 .min().orElse(0);
     }
 
     public double getSumOfSalariesInDepartment(int department) {
-        return employeeService.getEmployees().stream()
+        return employeeService.getAllEmployees().stream()
                 .filter(e -> e.getDepartment() == department)
                 .mapToDouble(Employee::getSalary)
                 .sum();

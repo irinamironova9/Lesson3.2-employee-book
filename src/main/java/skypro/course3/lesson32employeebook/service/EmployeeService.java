@@ -14,10 +14,6 @@ public class EmployeeService {
 
     private final Map<Integer, Employee> employeeBook = new HashMap<>();
 
-    public Collection<Employee> getEmployees() {
-        return employeeBook.values();
-    }
-
     public Employee addEmployee(EmployeeRequest er) {
 
         if (!StringUtils.isAlpha(er.getName()) ||
@@ -42,6 +38,15 @@ public class EmployeeService {
 
         return employee;
     }
+
+    public void deleteEmployee(int id) {
+        employeeBook.remove(id);
+    }
+
+    public Employee findEmployee(int id) {
+        return employeeBook.get(id);
+    }
+
 
     public Collection<Employee> getAllEmployees() {
         return employeeBook.values();
