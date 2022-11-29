@@ -1,11 +1,8 @@
 package skypro.course3.lesson32employeebook.controller;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import skypro.course3.lesson32employeebook.model.Employee;
 import skypro.course3.lesson32employeebook.service.DepartmentService;
-
-import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Map;
 

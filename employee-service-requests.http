@@ -13,6 +13,12 @@ GET http://localhost:8080/employee/salary/max
 ### Получение сотрудников с з/п больше средней
 GET http://localhost:8080/employees/high-salary
 
+### Удаление сотрудника
+DELETE http://localhost:8080/employee?id=1
+
+### Поиск сотрудника
+GET http://localhost:8080/employee?id=1
+
 
 // По департаментам:
 

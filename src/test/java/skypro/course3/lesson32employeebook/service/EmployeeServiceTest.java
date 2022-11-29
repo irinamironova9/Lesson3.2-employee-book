@@ -3,13 +3,13 @@ package skypro.course3.lesson32employeebook.service;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import skypro.course3.lesson32employeebook.exceptions.InvalidEmployeeRequestException;
+import skypro.course3.lesson32employeebook.exception.EmployeeAlreadyAddedException;
+import skypro.course3.lesson32employeebook.exception.EmployeeNotFoundException;
+import skypro.course3.lesson32employeebook.exception.InvalidEmployeeRequestException;
 import skypro.course3.lesson32employeebook.model.Employee;
 import skypro.course3.lesson32employeebook.record.EmployeeRequest;
-
 import java.util.Collection;
 import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static skypro.course3.lesson32employeebook.service.TestConstants.*;
@@ -27,7 +27,7 @@ class EmployeeServiceTest {
     @Test
     void addEmployee() {
         EmployeeRequest expected = new EmployeeRequest(
-                "Test", "Test", 3, 10);
+                "Test", "Test", 1, 10);
         Employee actual = out.addEmployee(expected);
 
         assertEquals(expected.getName(), actual.getName());
@@ -75,8 +75,8 @@ class EmployeeServiceTest {
     }
 
     @Test
-    void shouldThrowRuntimeExceptionWhenExistingEmployeeIsAdded() {
-        assertThrows(RuntimeException.class,
+    void shouldThrowEmployeeAlreadyAddedException() {
+        assertThrows(EmployeeAlreadyAddedException.class,
                 () -> out.addEmployee(EMPLOYEE_REQUESTS.get(0)));
     }
 
@@ -85,7 +85,9 @@ class EmployeeServiceTest {
         assertThat(out.getAllEmployees()).hasSize(4);
         Employee expected = out.getAllEmployees().stream().findAny().get();
         out.deleteEmployee(expected.getId());
-        assertThat(out.getAllEmployees()).hasSize(3);
+        assertThat(out.getAllEmployees())
+                .hasSize(3)
+                .doesNotContain(expected);
     }
 
     @Test
@@ -95,6 +97,13 @@ class EmployeeServiceTest {
         assertSame(expected, actual);
     }
 
+    @Test
+    void shouldThrowEmployeeNotFoundException() {
+        assertThrows(EmployeeNotFoundException.class,
+                () -> out.deleteEmployee(0));
+        assertThrows(EmployeeNotFoundException.class,
+                () -> out.findEmployee(0));
+    }
 
     @Test
     void getAllEmployees() {

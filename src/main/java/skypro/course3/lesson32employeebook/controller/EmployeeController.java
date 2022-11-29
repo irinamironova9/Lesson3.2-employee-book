@@ -1,13 +1,10 @@
 package skypro.course3.lesson32employeebook.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import skypro.course3.lesson32employeebook.model.Employee;
 import skypro.course3.lesson32employeebook.record.EmployeeRequest;
 import skypro.course3.lesson32employeebook.service.EmployeeService;
-
 import java.util.Collection;
 import java.util.Optional;
 
@@ -23,6 +20,17 @@ public class EmployeeController {
     @PostMapping("/employee")
     public Employee createEmployee(@RequestBody EmployeeRequest employeeRequest) {
             return this.employeeService.addEmployee(employeeRequest);
+    }
+
+    @DeleteMapping("/employee")
+    public String deleteEmployee(@RequestParam("id") int id) {
+        employeeService.deleteEmployee(id);
+        return "Сотрудник успешно удалён";
+    }
+
+    @GetMapping("/employee")
+    public Employee findEmployee(@RequestParam("id") int id) {
+        return employeeService.findEmployee(id);
     }
 
     @GetMapping("/employees")
@@ -48,5 +56,10 @@ public class EmployeeController {
     @GetMapping("/employees/salary/sum")
     public double getSalarySum() {
         return this.employeeService.getSalarySum();
+    }
+
+    @ExceptionHandler(value = RuntimeException.class)
+    public ResponseEntity<String> ExceptionsHandler(RuntimeException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 }
