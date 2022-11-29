@@ -1,0 +1,38 @@
+### Получение списка всех сотрудников
+GET http://localhost:8080/employees
+
+### Получение суммы зарплат всех сотрудников
+GET http://localhost:8080/employees/salary/sum
+
+### Получение сотрудника с минимальной зарплатой
+GET http://localhost:8080/employee/salary/min
+
+### Получение сотрудника с максимальной зарплатой
+GET http://localhost:8080/employee/salary/max
+
+### Получение сотрудников с з/п больше средней
+GET http://localhost:8080/employees/high-salary
+
+### Удаление сотрудника
+DELETE http://localhost:8080/employee?id=1
+
+### Поиск сотрудника
+GET http://localhost:8080/employee?id=1
+
+
+// По департаментам:
+
+### Возвращает всех сотрудников, сгруппированых по отделам
+GET http://localhost:8080/department/all-employees
+
+### Возвращает список сотрудников заданного отдела
+GET http://localhost:8080/department/2/employees
+
+### Возвращает сумму зарплат по отделу
+GET http://localhost:8080/department/1/salary/sum
+
+### Возвращает максимальную зарплату по отделу
+GET http://localhost:8080/department/2/salary/max
+
+### Возвращает минимальную зарплату по отделу
+GET http://localhost:8080/department/1/salary/min
